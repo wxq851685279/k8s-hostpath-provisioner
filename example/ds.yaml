@@ -1,4 +1,4 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   labels:
@@ -6,11 +6,14 @@ metadata:
   name: hostpath-provisioner
   namespace: kube-system
 spec:
+  selector: 
+    matchLabels: 
+      name: hostpath-provisioner
   template:
     metadata:
       name: hostpath-provisioner
       labels:
-        app: hostpath-provisioner
+        name: hostpath-provisioner
     spec:
       nodeSelector:
         nailgun.name/hostpath: enabled
